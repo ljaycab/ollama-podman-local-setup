@@ -184,10 +184,10 @@ hostname -I
 
 **Expected Output:**
 ```
-192.168.1.111 172.17.0.1
+192.168.1.XXX 172.17.0.1
 ```
 
-✏️ **Note:** Write down the first IP (in this example: `192.168.1.111`) — you'll need it in Step 4.2
+✏️ **Note:** Write down the first IP (in this example: `192.168.1.XXX`) — you'll need it in Step 4.2
 
 ### Step 3.2: Start Ollama on Your Host
 
@@ -241,10 +241,10 @@ mistral   6577803aa9a0    4.1 GB    2 minutes ago
 ### Step 3.5: Test Ollama is Reachable on Your Network
 
 ```bash
-curl http://192.168.1.111:11434/api/tags
+curl http://192.168.1.XXX:11434/api/tags
 ```
 
-Replace `192.168.1.111` with your actual IP from Step 3.1.
+Replace `192.168.1.XXX` with your actual IP from Step 3.1.
 
 **Expected Output:**
 ```json
@@ -270,7 +270,7 @@ root@abc123def456:/workspace#
 
 ### Step 4.2: Copy the Chat Script
 
-**IMPORTANT:** Replace `192.168.1.111` with your actual IP from Part 3, Step 3.1 before running!
+**IMPORTANT:** Replace `192.168.1.XXX` with your actual IP from Part 3, Step 3.1 before running!
 
 Copy `scripts/ollama_client.py` from this repo to `/workspace/ollama_client.py`
 
@@ -284,7 +284,7 @@ import json
 import requests
 from datetime import datetime
 
-OLLAMA_API = "http://192.168.1.111:11434/api/generate"
+OLLAMA_API = "http://192.168.1.XXX:11434/api/generate"
 CONVERSATION_FILE = "/workspace/data/conversation.json"
 MODEL = "mistral"
 
@@ -362,7 +362,7 @@ def chat_with_ollama():
                 print(f"Error: {response.status_code}")
         
         except requests.exceptions.ConnectionError:
-            print("ERROR: Cannot connect to Ollama API on 192.168.1.111:11434")
+            print("ERROR: Cannot connect to Ollama API on 192.168.1.XXX:11434")
             print("Make sure Ollama is running on your host with:")
             print("OLLAMA_HOST=0.0.0.0:11434 ollama serve")
             break
